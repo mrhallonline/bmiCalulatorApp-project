@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:bmi_calculator/icon_content.dart';
+import 'reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 const bottomContainerHeight = 40.0;
 const bottomContainerColor = Color(0xFFEB1555);
 const cardColor = Color(0xFF1D1E33);
+const iconColor = Color(0xFF8D8E98);
 
 class InputPage extends StatefulWidget {
   @override
@@ -25,25 +29,15 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     colour: cardColor,
-                    cardChild: Column(
-                      children: <Widget>[
-                        Icon(
-                          FontAwesomeIcons.mars,
-                          size: 80.0,
-                        ),
-                        SizedBox(
-                          height: 15.0,
-                        ),
-                        Text('MALE', style: TextStyle(
-                          fontSize: 18.0, color: Color(0xFF8D8E98),
-                        ),),
-                      ],
-                    ),
+                    cardChild: ReusableIconWidget(
+                        icon: FontAwesomeIcons.mars, label: 'MALE'),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     colour: cardColor,
+                    cardChild: ReusableIconWidget(
+                        icon: FontAwesomeIcons.venus, label: 'FEMALE'),
                   ),
                 ),
               ],
@@ -82,21 +76,4 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class ReusableCard extends StatelessWidget {
-  ReusableCard({@required this.colour, this.cardChild});
 
-  final Color colour;
-  final Widget cardChild;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: cardChild,
-      decoration: BoxDecoration(
-        color: colour,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      margin: EdgeInsets.all(15.0),
-    );
-  }
-}
